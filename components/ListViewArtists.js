@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar, PixelRatio, Image } from 'react-native';
-import { KONSTRUNDAN_COLOURS, ARTIST_IMAGES, ARTIST_DATA } from '../constants/constants';
+import { KONSTRUNDAN_COLOURS, ARTIST_IMAGES, ARTIST_DATA, ARTIST_IMAGES_ASPECT_RATIO } from '../constants/constants';
 
 const Item = ({ imageSource, textTop, textCenter, textBottom }) => (
     <View style={styles.item}>
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     image: {
         height: '100%',
         width: undefined,
-        aspectRatio: 206/256,
+        aspectRatio: ARTIST_IMAGES_ASPECT_RATIO,
     },
     containerText: {
         flex: 1,

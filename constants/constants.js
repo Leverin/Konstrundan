@@ -6,8 +6,8 @@ export const KONSTRUNDAN_COLOURS = Object.freeze({
     GREY_DARK: '#969696',
 });
 
+export const ARTIST_IMAGES_ASPECT_RATIO = 206/256;
 export const ARTIST_DATA = require('../assets/JSON/konstrundan2022.json');
-
 export const ARTIST_IMAGES = Object.freeze({
     1: require('../assets/artistImages/1.jpg'),
     2: require('../assets/artistImages/2.jpg'),
