@@ -1,33 +1,22 @@
 import * as React from 'react';
-import MapView, { Marker } from 'react-native-maps';
+//import MapView, { Marker } from 'react-native-maps';
+import MapView from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import { ARTIST_DATA } from '../constants/constants';
+import { getAppropriateRegion, getMarkersFromArtistData } from '../utils/utils-map';
+import { getPropertyValuesFromData } from '../utils/utils-general';
 
-/*
-let mapMarkers = [];
-ARTIST_DATA.map((item) => {
-	const marker = <Marker
-					key={item.NUMMER}
-					coordinate={{ latitude: item.LATITUDE, longitude: item.LONGITUDE }}
-					title={`${item.FORNAMN} ${item.EFTERNAMN}`}
-					description={'My description'}
-					/>;
-	mapMarkers.push(marker);
-});
-*/
+const latitudes = getPropertyValuesFromData(ARTIST_DATA, 'LATITUDE');
+const longitudes = getPropertyValuesFromData(ARTIST_DATA, 'LONGITUDE');
+const initialRegion = getAppropriateRegion(latitudes, longitudes);
+
+const mapViewMarkers = getMarkersFromArtistData(ARTIST_DATA);
 
 const MapViewArtists = () => {
     return (
         <View style={styles.container}>
-        	<MapView showsUserLocation={true} style={styles.map}>
-				{ARTIST_DATA.map((item) => (
-					<Marker
-						key={item.NUMMER}
-						coordinate={{ latitude: item.LATITUDE, longitude: item.LONGITUDE }}
-						title={`${item.FORNAMN} ${item.EFTERNAMN}`}
-						description={'My description'}
-					/>
-				))}
+        	<MapView showsUserLocation={true} style={styles.map} initialRegion={initialRegion}>
+				{mapViewMarkers}
 			</MapView>
         </View>
     );
@@ -42,7 +31,7 @@ const styles = StyleSheet.create({
   	},
   	map: {
     	width: Dimensions.get('window').width,
-    	height: Dimensions.get('window').height,
+    	height: Dimensions.get('window').height-32,
   	},
 });
 

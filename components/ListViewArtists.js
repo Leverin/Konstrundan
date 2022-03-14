@@ -35,6 +35,7 @@ const ListViewArtists = () => {
             data={ARTIST_DATA}
             renderItem={renderItem}
             keyExtractor={item => item.NUMMER}
+            style={styles.background}
         />
     );
     /*
@@ -55,9 +56,12 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: StatusBar.currentHeight || 0,
     },
+    background: {
+        backgroundColor: KONSTRUNDAN_COLOURS.YELLOW,
+    },
     dividerDark: {
         height: 1,
-        backgroundColor: KONSTRUNDAN_COLOURS.GREY_DARK
+        backgroundColor: KONSTRUNDAN_COLOURS.GREY_DARK,
     },
     dividerLight: {
         height: 1,
@@ -67,7 +71,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: KONSTRUNDAN_COLOURS.YELLOW,
         height: 95,
-        //marginVertical: 1,
     },
     image: {
         height: '100%',

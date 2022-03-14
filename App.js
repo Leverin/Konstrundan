@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { TabView, SceneMap } from 'react-native-tab-view';
+import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 
 import InfoView from './components/InfoViewGeneral';
 import ListViewArtists from './components/ListViewArtists';
@@ -29,6 +29,14 @@ const renderScene = SceneMap({
 	karta: RouteMap,
 });
 
+const KonstrundanTabBar = props => (
+	<TabBar
+	  {...props}
+	  indicatorStyle={styles.tabBarBackground}
+	  style={styles.tabBarBackground}
+	/>
+  );
+
 const WindowMain = () => {
 	const [index, setIndex] = React.useState(0);
 	const [routes] = React.useState([
@@ -45,6 +53,7 @@ const WindowMain = () => {
 			initialLayout={initialLayout}
 			style={styles.container}
 			sceneAnimationEnabled={false}
+			renderTabBar={KonstrundanTabBar}
 		/>
 	);
 };
@@ -52,7 +61,13 @@ const WindowMain = () => {
 const styles = StyleSheet.create({
 	container: {
 		//marginTop: StatusBar.currentHeight,
-		marginTop: 100,
+		marginTop: 32,
+	},
+	tabBarIndicator: {
+		backgroundColor: KONSTRUNDAN_COLOURS.YELLOW,
+	},
+	tabBarBackground: {
+		backgroundColor: KONSTRUNDAN_COLOURS.RED,
 	},
 	scene: {
 		flex: 1,
@@ -60,24 +75,3 @@ const styles = StyleSheet.create({
 });
 
 export default WindowMain;
-
-
-/*
-export default function App() {
-  return (
-	<View style={styles.container}>
-	  <Text>Open up App.js to start working on your appi!</Text>
-	  <StatusBar style="auto" />
-	</View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-	flex: 1,
-	backgroundColor: '#fff',
-	alignItems: 'center',
-	justifyContent: 'center',
-  },
-});
-*/
