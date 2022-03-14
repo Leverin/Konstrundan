@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 
-import { YELLOW } from '../constants/constants';
+import { KONSTRUNDAN_COLOURS } from '../constants/constants';
 
 const InfoView = () => {
     return (
@@ -14,7 +14,7 @@ const InfoView = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: YELLOW,
+        backgroundColor: KONSTRUNDAN_COLOURS.YELLOW,
         paddingLeft: 24,
         paddingRight: 24,
         justifyContent: 'center',

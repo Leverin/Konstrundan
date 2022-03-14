@@ -1,30 +1,6 @@
 import * as React from 'react';
 import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar, PixelRatio, Image } from 'react-native';
-import { YELLOW, ARTIST_IMAGES } from '../constants/constants';
-
-const IMAGE_PATH = '../assets/artistImages';
-const IMAGE_EXTENSION = 'jpg';
-
-const DATA = [
-    {
-      NUMMER: 1,
-      FORNAMN: 'Anna',
-      EFTERNAMN: 'Hansson',
-      TEKNIK: 'Slöjd, textil, färg',
-    },
-    {
-      NUMMER: 2,
-      FORNAMN: 'Karl',
-      EFTERNAMN: 'Knutsson',
-      TEKNIK: 'Akvareller, olemålningar',
-    },
-    {
-      NUMMER: 4,
-      FORNAMN: 'Lasse',
-      EFTERNAMN: 'Barbados',
-      TEKNIK: 'Keramik, skulpturer',
-    },
-];
+import { KONSTRUNDAN_COLOURS, ARTIST_IMAGES, ARTIST_DATA } from '../constants/constants';
 
 const Item = ({ imageSource, textTop, textCenter, textBottom }) => (
     <View style={styles.item}>
@@ -43,26 +19,35 @@ const ListViewArtists = () => {
         const textTop = `Nr ${item.NUMMER}`;
         const textCenter = `${item.FORNAMN} ${item.EFTERNAMN}`;
         const textBottom = item.TEKNIK;
-        //const imagePath = `${IMAGE_PATH}/${item.NUMMER}.${IMAGE_EXTENSION}`;
-        //const imagePath = '../assets/artistImages/1.jpg';
-        //const numberString = item.NUMMEER.toString();
-        //const imagePath = `../assets/artistImages/${numberString}.jpg`;
-        //const imageSource = require(imagePath);
-        //const imageSource = ARTIST_IMAGES.get(item.NUMMER);
         const imageSource = ARTIST_IMAGES[item.NUMMER];
 
-        return <Item imageSource={imageSource} textTop={textTop} textCenter={textCenter} textBottom={textBottom}/>;
+        return (
+            <React.Fragment key={item.NUMMER}>
+                <View style={styles.dividerLight}/>
+                <Item imageSource={imageSource} textTop={textTop} textCenter={textCenter} textBottom={textBottom}/>
+                <View style={styles.dividerDark}/>
+            </React.Fragment>
+        );
     };
     
     return (
+        <FlatList
+            data={ARTIST_DATA}
+            renderItem={renderItem}
+            keyExtractor={item => item.NUMMER}
+        />
+    );
+    /*
+    return (
         <SafeAreaView style={styles.container}>
             <FlatList
-                data={DATA}
+                data={ARTIST_DATA}
                 renderItem={renderItem}
                 keyExtractor={item => item.NUMMER}
             />
         </SafeAreaView>
     );
+    */
 };
 
 const styles = StyleSheet.create({
@@ -70,26 +55,33 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: StatusBar.currentHeight || 0,
     },
+    dividerDark: {
+        height: 1,
+        backgroundColor: KONSTRUNDAN_COLOURS.GREY_DARK
+    },
+    dividerLight: {
+        height: 1,
+        backgroundColor: '#FFF6B0',
+    },
     item: {
-        backgroundColor: YELLOW,
-        paddingTop: 6,
-        paddingBottom: 6,
-        //padding: 20,
-        //height: PixelRatio.getPixelSizeForLayoutSize(95),
+        flexDirection: 'row',
+        backgroundColor: KONSTRUNDAN_COLOURS.YELLOW,
         height: 95,
-        marginVertical: 8,
-        //marginHorizontal: 16,
+        //marginVertical: 1,
     },
     image: {
-        height: 95,
-        //maxWidth: '100%',
+        height: '100%',
+        width: undefined,
+        aspectRatio: 206/256,
     },
     containerText: {
         flex: 1,
         marginLeft: 12,
+        paddingTop: 6,
+        paddingBottom: 6,
         flexDirection: 'column',
         justifyContent: 'space-between',
-        backgroundColor: 'pink',
+        //backgroundColor: 'pink',
     },
     textTop: {
         fontSize: 12,

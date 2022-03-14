@@ -7,18 +7,18 @@ import InfoView from './components/InfoViewGeneral';
 import ListViewArtists from './components/ListViewArtists';
 import MapView from './components/MapViewArtists';
 
-import { YELLOW, RED, RED_DARK } from './constants/constants';
+import { KONSTRUNDAN_COLOURS } from './constants/constants';
 
 const routeFirst = () => (
-	<InfoView style={[styles.scene, { backgroundColor: YELLOW }]} />
+	<InfoView style={[styles.scene, { backgroundColor: KONSTRUNDAN_COLOURS.YELLOW }]} />
 );
 
 const SecondRoute = () => (
-	<ListViewArtists style={[styles.scene, { backgroundColor: YELLOW }]} />
+	<ListViewArtists style={[styles.scene, { backgroundColor: KONSTRUNDAN_COLOURS.YELLOW }]} />
 );
 
 const RouteMap = () => (
-	<MapView style={[styles.scene, { backgroundColor: YELLOW }]} />
+	<MapView style={[styles.scene, { backgroundColor: KONSTRUNDAN_COLOURS.YELLOW }]} />
 );
 
 const initialLayout = { width: Dimensions.get('window').width };
@@ -32,9 +32,9 @@ const renderScene = SceneMap({
 const WindowMain = () => {
 	const [index, setIndex] = React.useState(0);
 	const [routes] = React.useState([
-		{ key: 'info', title: 'First' },
-		{ key: 'artists', title: 'Second' },
-		{ key: 'karta', title: 'Karta' },
+		{ key: 'info', title: 'INFO' },
+		{ key: 'artists', title: 'KONSTNÄRER' },
+		{ key: 'karta', title: 'KARTA' },
 	]);
 
 	return (
@@ -44,6 +44,7 @@ const WindowMain = () => {
 			onIndexChange={setIndex}
 			initialLayout={initialLayout}
 			style={styles.container}
+			sceneAnimationEnabled={false}
 		/>
 	);
 };
