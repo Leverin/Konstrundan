@@ -1,60 +1,94 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StatusBar } from 'expo-status-bar';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
+import { ARTIST_DATA, ARTIST_IMAGES } from './constants/constants';
 
-import InfoView from './components/InfoViewGeneral';
+import InfoViewGeneral from './components/InfoViewGeneral';
 import ListViewArtists from './components/ListViewArtists';
-import MapView from './components/MapViewArtists';
+import MapViewArtists from './components/MapViewArtists';
+import InfoViewArtist from './components/InfoViewArtist';
 
 import { KONSTRUNDAN_COLOURS } from './constants/constants';
 
-const routeFirst = () => (
-	<InfoView style={[styles.scene, { backgroundColor: KONSTRUNDAN_COLOURS.YELLOW }]} />
-);
-
-const SecondRoute = () => (
-	<ListViewArtists style={[styles.scene, { backgroundColor: KONSTRUNDAN_COLOURS.YELLOW }]} />
-);
-
-const RouteMap = () => (
-	<MapView style={[styles.scene, { backgroundColor: KONSTRUNDAN_COLOURS.YELLOW }]} />
-);
-
-const initialLayout = { width: Dimensions.get('window').width };
-
-const renderScene = SceneMap({
-	info: routeFirst,
-	artists: SecondRoute,
-	karta: RouteMap,
-});
-
-const KonstrundanTabBar = props => (
-	<TabBar
-	  {...props}
-	  indicatorStyle={styles.tabBarBackground}
-	  style={styles.tabBarBackground}
-	/>
-  );
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+const BottomTabNavigator = () => {
+    return (
+        <Tab.Navigator screenOptions={{ headerShown: false, tabBarIconStyle: { display: "none" } }}>
+            <Tab.Screen name={"INFO"} component={InfoViewGeneralStackNavigator}/>
+            <Tab.Screen name={"KONSTNÄRER"} component={ListViewArtistsStackNavigator}/>
+			<Tab.Screen name={"KARTA"} component={MapViewArtistsStackNavigator}/>
+        </Tab.Navigator>
+    );
+};
 
 const WindowMain = () => {
-	const [index, setIndex] = React.useState(0);
-	const [routes] = React.useState([
-		{ key: 'info', title: 'INFO' },
-		{ key: 'artists', title: 'KONSTNÄRER' },
-		{ key: 'karta', title: 'KARTA' },
-	]);
+	return (
+		<NavigationContainer>
+			<MainStackNavigator/>
+		</NavigationContainer>
+	);
+};
+
+const screenOptionStyle = {
+	headerStyle: {
+	  backgroundColor: KONSTRUNDAN_COLOURS.RED,
+	},
+	headerTintColor: '#fff',
+	headerBackTitle: 'Bakåt',
+  };
+
+const InfoViewGeneralStackNavigator = () => {
+	return (
+		<Stack.Navigator screenOptions={screenOptionStyle}>
+			<Stack.Screen name={'Info'} component={InfoViewGeneral} options={{headerLeft: (props) => null}} />
+		</Stack.Navigator>
+	);
+};
+
+const ListViewArtistsStackNavigator = () => {
+	return (
+		<Stack.Navigator screenOptions={screenOptionStyle}>
+			<Stack.Screen name={'Artists'} component={ListViewArtists} options={{headerLeft: (props) => null}} />
+		</Stack.Navigator>
+	);
+	/*
+	return (
+		<Stack.Navigator screenOptions={screenOptionStyle}>
+			<Stack.Screen name={"Artists"} component={ListViewArtists} options={{headerLeft: (props) => null}} />
+			<Stack.Screen name={"ArtistMap"} component={null} />
+		</Stack.Navigator>
+	);
+	*/
+};
+
+const MapViewArtistsStackNavigator = () => {
 
 	return (
-		<TabView
-			navigationState={{ index, routes }}
-			renderScene={renderScene}
-			onIndexChange={setIndex}
-			initialLayout={initialLayout}
-			style={styles.container}
-			sceneAnimationEnabled={false}
-			renderTabBar={KonstrundanTabBar}
-		/>
+		<Stack.Navigator screenOptions={screenOptionStyle}>
+			<Stack.Screen name={'ArtistsMap'} component={MapViewArtists} options={{headerLeft: (props) => null}} />
+		</Stack.Navigator>
+	);
+	/*
+	return (
+		<Stack.Navigator screenOptions={screenOptionStyle}>
+			<Stack.Screen name={"ArtistsMap"} component={ListViewArtists} options={{headerLeft: (props) => null}} />
+			<Stack.Screen name={"ArtistMap"} component={null} />
+			<Stack.Screen name={"ArtistDetails"} component={null} />
+		</Stack.Navigator>
+	);
+	*/
+};
+
+const MainStackNavigator = () => {
+	return (
+		<Stack.Navigator screenOptions={{headerShown: false}}>
+			<Stack.Screen name={'TabNavigator'} component={BottomTabNavigator}/>
+		</Stack.Navigator>
 	);
 };
 

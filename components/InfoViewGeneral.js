@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Dimensions } from 'react-native';
 
 import { KONSTRUNDAN_COLOURS } from '../constants/constants';
 
-const InfoView = () => {
+const InfoViewGeneral = () => {
     return (
         <View style={styles.container}>
             <Text>{'Välkommen till Konstrundan i Nordvästra Skåne 2022!'}</Text>
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default InfoView;
+export default InfoViewGeneral;
