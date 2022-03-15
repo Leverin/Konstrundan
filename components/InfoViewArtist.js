@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyleSheet, Text, View, Dimensions, Image } from 'react-native';
 import { ARTIST_IMAGES_ASPECT_RATIO } from '../constants/constants';
 
-const InfoViewArtist = props => {
+const InfoViewArtist = (props, {navigation}) => {
     const { imageSource, name, address, city, phoneNumber, email, parking, homepage, busses } = props;
 
     const addressAndCityGroup = (

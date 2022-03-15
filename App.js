@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StatusBar } from 'expo-status-bar';
-import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
+//import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 import { ARTIST_DATA, ARTIST_IMAGES } from './constants/constants';
 
 import InfoViewGeneral from './components/InfoViewGeneral';

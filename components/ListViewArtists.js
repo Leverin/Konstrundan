@@ -13,7 +13,7 @@ const Item = ({ imageSource, textTop, textCenter, textBottom }) => (
     </View>
 );
 
-const ListViewArtists = () => {
+const ListViewArtists = ({ navigation }) => {
 
     const renderItem = ({ item }) => {
         const textTop = `Nr ${item.NUMMER}`;
@@ -38,17 +38,6 @@ const ListViewArtists = () => {
             style={styles.background}
         />
     );
-    /*
-    return (
-        <SafeAreaView style={styles.container}>
-            <FlatList
-                data={ARTIST_DATA}
-                renderItem={renderItem}
-                keyExtractor={item => item.NUMMER}
-            />
-        </SafeAreaView>
-    );
-    */
 };
 
 const styles = StyleSheet.create({

@@ -12,7 +12,7 @@ const initialRegion = getAppropriateRegion(latitudes, longitudes);
 
 const mapViewMarkers = getMarkersFromArtistData(ARTIST_DATA);
 
-const MapViewArtists = () => {
+const MapViewArtists = ({ navigation }) => {
     return (
         <View style={styles.container}>
         	<MapView showsUserLocation={true} style={styles.map} initialRegion={initialRegion}>
