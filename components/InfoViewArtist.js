@@ -2,10 +2,6 @@ import * as React from 'react';
 import { StyleSheet, Text, View, Dimensions, Image } from 'react-native';
 import { ARTIST_IMAGES_ASPECT_RATIO } from '../constants/constants';
 
-const IMAGE_HEIGHT = Dimensions.get('window').height*0.3;
-
-
-
 const InfoViewArtist = props => {
     const { imageSource, name, address, city, phoneNumber, email, parking, homepage, busses } = props;
 
@@ -47,17 +43,14 @@ const styles = StyleSheet.create({
     	justifyContent: 'center',
   	},
     containerText: {
-        //paddingVertical: 32,
         paddingBottom: 32,
         alignItems: 'center',
     },
     text: {
-        fontSize: 16,
+        fontSize: 18,
         paddingBottom: 12,
-        //fontWeight: 'bold',
     },
     textBold: {
-        fontSize: 16,
         fontWeight: 'bold',
     },
     image: {
