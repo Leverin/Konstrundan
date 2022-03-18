@@ -1,15 +1,3 @@
-import { Marker } from 'react-native-maps';
-
-export const getMarkersFromArtistData = (data) => {
-    return data.map((item) => (
-        <Marker
-            key={item.NUMMER}
-            coordinate={{ latitude: item.LATITUDE, longitude: item.LONGITUDE }}
-            title={`${item.FORNAMN} ${item.EFTERNAMN}`}
-            description={item.TEKNIK}
-        />
-    ));
-};
 
 export const getAppropriateRegion = (latitudeList, longitudeList) => {
     if (latitudeList.length !== longitudeList.length)

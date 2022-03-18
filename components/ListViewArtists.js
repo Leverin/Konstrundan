@@ -87,4 +87,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ListViewArtists;
+export default React.memo(ListViewArtists);

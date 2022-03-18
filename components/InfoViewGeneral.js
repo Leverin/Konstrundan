@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default InfoViewGeneral;
+export default React.memo(InfoViewGeneral);

@@ -4,8 +4,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StatusBar } from 'expo-status-bar';
-//import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
-import { ARTIST_DATA, ARTIST_IMAGES } from './constants/constants';
 
 import InfoViewGeneral from './components/InfoViewGeneral';
 import ListViewArtists from './components/ListViewArtists';
@@ -53,7 +51,7 @@ const InfoViewGeneralStackNavigator = () => {
 const ListViewArtistsStackNavigator = () => {
 	return (
 		<Stack.Navigator screenOptions={screenOptionStyle}>
-			<Stack.Screen name={'Artists'} component={ListViewArtists} options={{headerLeft: (props) => null}} />
+			<Stack.Screen name={'ListArtists'} component={ListViewArtists} options={{ title: 'Konstnärer', headerLeft: (props) => null}} />
 		</Stack.Navigator>
 	);
 	/*
@@ -67,11 +65,24 @@ const ListViewArtistsStackNavigator = () => {
 };
 
 const MapViewArtistsStackNavigator = () => {
-
+	/*
 	return (
 		<Stack.Navigator screenOptions={screenOptionStyle}>
 			<Stack.Screen name={'ArtistsMap'} component={MapViewArtists} options={{headerLeft: (props) => null}} />
 		</Stack.Navigator>
+	);
+	*/
+	return (
+		<Stack.Navigator screenOptions={screenOptionStyle}>
+			<Stack.Screen name={'MapArtists'} component={MapViewArtists} options={{ title: 'Karta', headerLeft: (props) => null}} />
+			<Stack.Screen name={"ArtistDetails"} component={InfoViewArtist} options={({ route }) => ({ title: route.params.title, headerLeft: (props) => null})}/>
+		</Stack.Navigator>
+		/*
+		<Stack.Navigator screenOptions={screenOptionStyle}>
+			<Stack.Screen name={"Karta"} component={MapViewArtists} options={{headerLeft: (props) => null}} />
+			<Stack.Screen name={"ArtistDetails"} component={InfoViewArtist} />
+		</Stack.Navigator>
+		*/
 	);
 	/*
 	return (
