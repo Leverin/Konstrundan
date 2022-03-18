@@ -2,14 +2,15 @@ import * as React from 'react';
 import MapView, { Marker, Callout } from 'react-native-maps';
 //import MapView from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
-import { ARTIST_DATA } from '../constants/constants';
+//import { ARTIST_DATA } from '../constants/constants';
 import { getAppropriateRegion } from '../utils/utils-map';
 import { getPropertyValuesFromData } from '../utils/utils-general';
-import { getDetailsPropsForArtistWithKey } from '../utils/utils-artists';
 
+/*
 const latitudes = getPropertyValuesFromData(ARTIST_DATA, 'LATITUDE');
 const longitudes = getPropertyValuesFromData(ARTIST_DATA, 'LONGITUDE');
 const initialRegion = getAppropriateRegion(latitudes, longitudes);
+*/
 
 const getMarkersFromArtistData = (data, onPressCallout) => {
 
@@ -28,18 +29,24 @@ const getMarkersFromArtistData = (data, onPressCallout) => {
     ));
 };
 
-const MapViewArtists = ({ navigation }) => {
+const MapViewArtists = ({ route, navigation }) => {
+
+	const artistsData = route.params.artistsData;
+	const componentDestinationName = artistsData.length > 1 ? 'ArtistDetails' : 'ArtistDetailsFromSingleMap';
 
 	const onPressCallout = (artist) => {
-		//const props = getDetailsPropsForArtistWithKey(ARTIST_DATA, artistKey);
 		const title = `${artist.FORNAMN} ${artist.EFTERNAMN}`;
-		navigation.navigate('ArtistDetails', {artist, title});
+		navigation.navigate(componentDestinationName, {artist, title});
 	};
+
+	const latitudes = getPropertyValuesFromData(artistsData, 'LATITUDE');
+	const longitudes = getPropertyValuesFromData(artistsData, 'LONGITUDE');
+	const initialRegion = getAppropriateRegion(latitudes, longitudes);
 
 	return (
         <View style={styles.container}>
         	<MapView showsUserLocation={true} style={styles.map} initialRegion={initialRegion}>
-				{getMarkersFromArtistData(ARTIST_DATA, onPressCallout)}
+				{getMarkersFromArtistData(artistsData, onPressCallout)}
 			</MapView>
         </View>
     );

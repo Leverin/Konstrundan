@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StatusBar } from 'expo-status-bar';
+import { ARTIST_DATA } from './constants/constants';
 
 import InfoViewGeneral from './components/InfoViewGeneral';
 import ListViewArtists from './components/ListViewArtists';
@@ -49,50 +50,35 @@ const InfoViewGeneralStackNavigator = () => {
 };
 
 const ListViewArtistsStackNavigator = () => {
+	/*
 	return (
 		<Stack.Navigator screenOptions={screenOptionStyle}>
 			<Stack.Screen name={'ListArtists'} component={ListViewArtists} options={{ title: 'Konstnärer', headerLeft: (props) => null}} />
 		</Stack.Navigator>
 	);
-	/*
+	*/
 	return (
 		<Stack.Navigator screenOptions={screenOptionStyle}>
-			<Stack.Screen name={"Artists"} component={ListViewArtists} options={{headerLeft: (props) => null}} />
-			<Stack.Screen name={"ArtistMap"} component={null} />
+			<Stack.Screen name={'ListArtists'} component={ListViewArtists} options={{ title: 'Konstnärer', headerLeft: (props) => null}} />
+			<Stack.Screen name={'ArtistMap'} component={MapViewArtists} options={({ route }) => ({ title: route.params.title})}/>
+			<Stack.Screen name={'ArtistDetailsFromSingleMap'} component={InfoViewArtist} options={({ route }) => ({ title: route.params.title })}/>
 		</Stack.Navigator>
 	);
-	*/
 };
 
 const MapViewArtistsStackNavigator = () => {
-	/*
+
 	return (
 		<Stack.Navigator screenOptions={screenOptionStyle}>
-			<Stack.Screen name={'ArtistsMap'} component={MapViewArtists} options={{headerLeft: (props) => null}} />
-		</Stack.Navigator>
-	);
-	*/
-	return (
-		<Stack.Navigator screenOptions={screenOptionStyle}>
-			<Stack.Screen name={'MapArtists'} component={MapViewArtists} options={{ title: 'Karta', headerLeft: (props) => null}} />
+			<Stack.Screen
+				name={'MapArtists'}
+				component={MapViewArtists}
+				options={{ title: 'Karta', headerLeft: (props) => null}}
+				initialParams={{ artistsData: ARTIST_DATA }}
+			/>
 			<Stack.Screen name={"ArtistDetails"} component={InfoViewArtist} options={({ route }) => ({ title: route.params.title, headerLeft: (props) => null})}/>
 		</Stack.Navigator>
-		/*
-		<Stack.Navigator screenOptions={screenOptionStyle}>
-			<Stack.Screen name={"Karta"} component={MapViewArtists} options={{headerLeft: (props) => null}} />
-			<Stack.Screen name={"ArtistDetails"} component={InfoViewArtist} />
-		</Stack.Navigator>
-		*/
 	);
-	/*
-	return (
-		<Stack.Navigator screenOptions={screenOptionStyle}>
-			<Stack.Screen name={"ArtistsMap"} component={ListViewArtists} options={{headerLeft: (props) => null}} />
-			<Stack.Screen name={"ArtistMap"} component={null} />
-			<Stack.Screen name={"ArtistDetails"} component={null} />
-		</Stack.Navigator>
-	);
-	*/
 };
 
 const MainStackNavigator = () => {
