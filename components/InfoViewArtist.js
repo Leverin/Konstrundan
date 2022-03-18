@@ -1,11 +1,26 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { ARTIST_IMAGES_ASPECT_RATIO } from '../constants/constants';
+import { ARTIST_IMAGES, ARTIST_IMAGES_ASPECT_RATIO } from '../constants/constants';
 
-//const InfoViewArtist = (props, {navigation}) => {
+const getInfoViewPropsFromArtist = (artist) => {
+
+    return {
+        imageSource: ARTIST_IMAGES[artist.NUMMER],
+        name: `${artist.FORNAMN} ${artist.EFTERNAMN}`,
+        address: artist.ADRESS,
+        city: artist.ORT,
+        phoneNumber: artist.MOBIL,
+        email: artist.EPOST,
+        parking: artist.PARKERING,
+        homepage: artist.HEMSIDA,
+        busses: artist.BUSSAR,
+    }
+};
+
 const InfoViewArtist = ({route}) => {
 
-    const { imageSource, name, address, city, phoneNumber, email, parking, homepage, busses } = route.params.props;
+    const props = getInfoViewPropsFromArtist(route.params.artist);
+    const { imageSource, name, address, city, phoneNumber, email, parking, homepage, busses } = props;
 
     const addressAndCityGroup = (
         <React.Fragment>

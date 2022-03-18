@@ -13,16 +13,16 @@ const initialRegion = getAppropriateRegion(latitudes, longitudes);
 
 const getMarkersFromArtistData = (data, onPressCallout) => {
 
-	return data.map((item) => (
+	return data.map((artist) => (
         <Marker
-            key={item.NUMMER}
-            coordinate={{ latitude: item.LATITUDE, longitude: item.LONGITUDE }}
-            title={`${item.FORNAMN} ${item.EFTERNAMN}`}
-            description={item.TEKNIK}
+            key={artist.NUMMER}
+            coordinate={{ latitude: artist.LATITUDE, longitude: artist.LONGITUDE }}
+            title={`${artist.FORNAMN} ${artist.EFTERNAMN}`}
+            description={artist.TEKNIK}
         >
-            <Callout key={item.NUMMER} style={styles.callout} onPress={() => {onPressCallout(item.NUMMER)}}>
-				<Text style={styles.title}>{`${item.FORNAMN} ${item.EFTERNAMN}`}</Text>
-				<Text style={styles.subtitle}>{`${item.TEKNIK}`}</Text>
+            <Callout key={artist.NUMMER} style={styles.callout} onPress={() => {onPressCallout(artist)}}>
+				<Text style={styles.title}>{`${artist.FORNAMN} ${artist.EFTERNAMN}`}</Text>
+				<Text style={styles.subtitle}>{`${artist.TEKNIK}`}</Text>
             </Callout>
         </Marker>
     ));
@@ -30,11 +30,10 @@ const getMarkersFromArtistData = (data, onPressCallout) => {
 
 const MapViewArtists = ({ navigation }) => {
 
-	const onPressCallout = (artistKey) => {
-		console.log('Max artistKey: ', artistKey);
-		//imageSource, name, address, city, phoneNumber, email, parking, homepage, busses
-		const props = getDetailsPropsForArtistWithKey(ARTIST_DATA, artistKey);
-		navigation.navigate('ArtistDetails', {props, title: props.name});
+	const onPressCallout = (artist) => {
+		//const props = getDetailsPropsForArtistWithKey(ARTIST_DATA, artistKey);
+		const title = `${artist.FORNAMN} ${artist.EFTERNAMN}`;
+		navigation.navigate('ArtistDetails', {artist, title});
 	};
 
 	return (

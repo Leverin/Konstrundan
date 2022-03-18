@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar, PixelRatio, Image } from 'react-native';
+import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar, Image, Pressable } from 'react-native';
 import { KONSTRUNDAN_COLOURS, ARTIST_IMAGES, ARTIST_DATA, ARTIST_IMAGES_ASPECT_RATIO } from '../constants/constants';
 
 const Item = ({ imageSource, textTop, textCenter, textBottom }) => (
@@ -15,7 +15,7 @@ const Item = ({ imageSource, textTop, textCenter, textBottom }) => (
 
 const ListViewArtists = ({ navigation }) => {
 
-    const renderItem = ({ item }) => {
+    const renderArtistItem = ({ item }) => {
         const textTop = `Nr ${item.NUMMER}`;
         const textCenter = `${item.FORNAMN} ${item.EFTERNAMN}`;
         const textBottom = item.TEKNIK;
@@ -23,9 +23,11 @@ const ListViewArtists = ({ navigation }) => {
 
         return (
             <React.Fragment key={item.NUMMER}>
-                <View style={styles.dividerLight}/>
-                <Item imageSource={imageSource} textTop={textTop} textCenter={textCenter} textBottom={textBottom}/>
-                <View style={styles.dividerDark}/>
+                <Pressable onPress={() => {console.log('Max nummer: ', item.NUMMER)}}>
+                    <View style={styles.dividerLight}/>
+                    <Item imageSource={imageSource} textTop={textTop} textCenter={textCenter} textBottom={textBottom}/>
+                    <View style={styles.dividerDark}/>
+                </Pressable>
             </React.Fragment>
         );
     };
@@ -33,7 +35,7 @@ const ListViewArtists = ({ navigation }) => {
     return (
         <FlatList
             data={ARTIST_DATA}
-            renderItem={renderItem}
+            renderItem={renderArtistItem}
             keyExtractor={item => item.NUMMER}
             style={styles.background}
         />
