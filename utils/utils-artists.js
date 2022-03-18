@@ -5,12 +5,9 @@ export const getArtistWithKey = (data, key) => {
 };
 
 export const getDetailsPropsForArtistWithKey = (data, key) => {
-    //imageSource, name, address, city, phoneNumber, email, parking, homepage, busses
-    //const artist = data[key];
+
     const artist = getArtistWithKey(data, key);
 
-    console.log('key: ', key);
-    console.log('artist: ', artist);
     return {
         imageSource: ARTIST_IMAGES[key],
         name: `${artist.FORNAMN} ${artist.EFTERNAMN}`,
