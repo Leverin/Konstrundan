@@ -23,7 +23,7 @@ const ListViewArtists = ({ navigation }) => {
 
         return (
             <React.Fragment key={item.NUMMER}>
-                <Pressable onPress={() => {navigation.navigate('ArtistMap', {artistsData: [item]})}}>
+                <Pressable onPress={() => {navigation.navigate('ArtistMap', {artistsList: [item]})}}>
                     <View style={styles.dividerLight}/>
                     <Item imageSource={imageSource} textTop={textTop} textCenter={textCenter} textBottom={textBottom}/>
                     <View style={styles.dividerDark}/>

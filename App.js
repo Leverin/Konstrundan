@@ -74,7 +74,7 @@ const MapViewArtistsStackNavigator = () => {
 				name={'MapArtists'}
 				component={MapViewArtists}
 				options={{ title: 'Karta', headerLeft: (props) => null}}
-				initialParams={{ artistsData: ARTIST_DATA }}
+				initialParams={{ artistsList: ARTIST_DATA }}
 			/>
 			<Stack.Screen name={"ArtistDetails"} component={InfoViewArtist} options={({ route }) => ({ title: route.params.title, headerLeft: (props) => null})}/>
 		</Stack.Navigator>
