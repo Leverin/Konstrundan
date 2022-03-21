@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StatusBar } from 'expo-status-bar';
 import { ARTIST_DATA } from './constants/constants';
+import { Ionicons } from '@expo/vector-icons';
 
+//import BottomTabNavigator from './components/TabComponent';
 import InfoViewGeneral from './components/InfoViewGeneral';
 import ListViewArtists from './components/ListViewArtists';
 import MapViewArtists from './components/MapViewArtists';
@@ -13,14 +15,53 @@ import InfoViewArtist from './components/InfoViewArtist';
 
 import { KONSTRUNDAN_COLOURS } from './constants/constants';
 
+const ICON_NAMES = {
+	INFO: 'information',
+	ARTISTS: 'people',
+	MAP: 'map',
+};
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
     return (
-        <Tab.Navigator screenOptions={{ headerShown: false, tabBarIconStyle: { display: "none" } }}>
-            <Tab.Screen name={"INFO"} component={InfoViewGeneralStackNavigator}/>
-            <Tab.Screen name={"KONSTNÄRER"} component={ListViewArtistsStackNavigator}/>
-			<Tab.Screen name={"KARTA"} component={MapViewArtistsStackNavigator}/>
+        <Tab.Navigator
+			screenOptions={{
+				headerShown: false,
+				//tabBarStyle: { height: 80 },
+				tabBarActiveBackgroundColor: KONSTRUNDAN_COLOURS.RED,
+				tabBarInactiveBackgroundColor: KONSTRUNDAN_COLOURS.RED,
+				tabBarInactiveTintColor: KONSTRUNDAN_COLOURS.WHITE,
+				tabBarActiveTintColor: KONSTRUNDAN_COLOURS.YELLOW,
+			}}
+		>
+            <Tab.Screen
+				name={'INFO'}
+				component={InfoViewGeneralStackNavigator}
+				options={{
+					tabBarIcon: ({color, size}) => (
+						<Ionicons name={ICON_NAMES.INFO} size={size} color={color} />
+					),
+				}}
+			/>
+            <Tab.Screen
+				name={'KONSTNÄRER'}
+				component={ListViewArtistsStackNavigator}
+				options={{
+					tabBarIcon: ({color, size}) => (
+						<Ionicons name={ICON_NAMES.ARTISTS} size={size} color={color} />
+					),
+				}}
+			/>
+			<Tab.Screen
+				name={'KARTA'}
+				component={MapViewArtistsStackNavigator}
+				options={{
+					tabBarIcon: ({color, size}) => (
+						<Ionicons name={ICON_NAMES.MAP} size={size} color={color} />
+					),
+				}}
+			/>
         </Tab.Navigator>
     );
 };
@@ -37,7 +78,7 @@ const screenOptionStyle = {
 	headerStyle: {
 	  backgroundColor: KONSTRUNDAN_COLOURS.RED,
 	},
-	headerTintColor: '#fff',
+	headerTintColor: KONSTRUNDAN_COLOURS.WHITE,
 	headerBackTitle: 'Bakåt',
   };
 
@@ -50,13 +91,6 @@ const InfoViewGeneralStackNavigator = () => {
 };
 
 const ListViewArtistsStackNavigator = () => {
-	/*
-	return (
-		<Stack.Navigator screenOptions={screenOptionStyle}>
-			<Stack.Screen name={'ListArtists'} component={ListViewArtists} options={{ title: 'Konstnärer', headerLeft: (props) => null}} />
-		</Stack.Navigator>
-	);
-	*/
 	return (
 		<Stack.Navigator screenOptions={screenOptionStyle}>
 			<Stack.Screen name={'ListArtists'} component={ListViewArtists} options={{ title: 'Konstnärer', headerLeft: (props) => null}} />
@@ -83,7 +117,7 @@ const MapViewArtistsStackNavigator = () => {
 
 const MainStackNavigator = () => {
 	return (
-		<Stack.Navigator screenOptions={{headerShown: false}}>
+		<Stack.Navigator screenOptions={{headerShown: false}} styles={styles.container}>
 			<Stack.Screen name={'TabNavigator'} component={BottomTabNavigator}/>
 		</Stack.Navigator>
 	);
@@ -91,8 +125,7 @@ const MainStackNavigator = () => {
 
 const styles = StyleSheet.create({
 	container: {
-		//marginTop: StatusBar.currentHeight,
-		marginTop: 32,
+		flex: 1,
 	},
 	tabBarIndicator: {
 		backgroundColor: KONSTRUNDAN_COLOURS.YELLOW,

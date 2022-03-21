@@ -1,31 +1,32 @@
 import * as React from 'react';
-import MapView, { Marker, Callout } from 'react-native-maps';
-//import MapView from 'react-native-maps';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
+import { StyleSheet, View, Dimensions } from 'react-native';
 import ArtistMapMarkerCallout from './subcomponents/ArtistMapMarkerCallout';
-//import { ARTIST_DATA } from '../constants/constants';
+import { ARTIST_MAP_MARKERS, ARTIST_MAP_MARKERS_IMAGE_HEIGHT } from '../constants/constants';
 import { getAppropriateRegion } from '../utils/utils-map';
 import { getPropertyValuesFromData } from '../utils/utils-general';
 import { getArtistWithNUMMERFromArray } from '../utils/utils-artists';
 
-/*
-const latitudes = getPropertyValuesFromData(ARTIST_DATA, 'LATITUDE');
-const longitudes = getPropertyValuesFromData(ARTIST_DATA, 'LONGITUDE');
-const initialRegion = getAppropriateRegion(latitudes, longitudes);
-*/
-
 const getMarkersFromArtistData = (data, onPressCallout) => {
 
-	return data.map((artist) => (
-        <Marker
-            key={artist.NUMMER}
-            coordinate={{ latitude: artist.LATITUDE, longitude: artist.LONGITUDE }}
-            title={`${artist.FORNAMN} ${artist.EFTERNAMN}`}
-            description={artist.TEKNIK}
-        >
-            <ArtistMapMarkerCallout identifier={artist.NUMMER} title={`${artist.FORNAMN} ${artist.EFTERNAMN}`} subtitle={artist.TEKNIK} onPressCallout={onPressCallout} />
-        </Marker>
-    ));
+	return data.map((artist) => {
+
+		//console.log('haiit: ', Image.resolveAssetSource(ARTIST_MAP_MARKERS[artist.NUMMER]).height);
+		//const IMAGE_HEIGHT = Image.resolveAssetSource(ARTIST_MAP_MARKERS[artist.NUMMER]).height;
+
+		return (
+			<Marker
+				key={artist.NUMMER}
+				coordinate={{ latitude: artist.LATITUDE, longitude: artist.LONGITUDE }}
+				tracksViewChanges={false}
+				anchor={{x: 0.5, y: 1}}
+				centerOffset={{x: 0.5, y: 1}}
+				image={ARTIST_MAP_MARKERS[artist.NUMMER]}
+			>
+				<ArtistMapMarkerCallout identifier={artist.NUMMER} title={`${artist.FORNAMN} ${artist.EFTERNAMN}`} subtitle={artist.TEKNIK} onPressCallout={onPressCallout} />
+			</Marker>
+		);
+	});
 };
 
 const MapViewArtists = ({ route, navigation }) => {

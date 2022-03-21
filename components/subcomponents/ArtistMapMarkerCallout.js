@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
 		marginLeft: 16,
 		height: INFO_VIEW_SIZE,
         width: INFO_VIEW_SIZE,
-		//borderRadius: '50%',
         borderRadius: INFO_VIEW_SIZE/2,
 	},
     infoViewContent: {
@@ -53,4 +52,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default ArtistMapMarkerCallout;
+export default React.memo(ArtistMapMarkerCallout);

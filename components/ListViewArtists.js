@@ -43,10 +43,6 @@ const ListViewArtists = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginTop: StatusBar.currentHeight || 0,
-    },
     background: {
         backgroundColor: KONSTRUNDAN_COLOURS.YELLOW,
     },
@@ -75,7 +71,6 @@ const styles = StyleSheet.create({
         paddingBottom: 6,
         flexDirection: 'column',
         justifyContent: 'space-between',
-        //backgroundColor: 'pink',
     },
     textTop: {
         fontSize: 12,

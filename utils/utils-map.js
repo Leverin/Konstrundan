@@ -1,11 +1,23 @@
 
 export const getAppropriateRegion = (latitudeList, longitudeList) => {
-    if (latitudeList.length !== longitudeList.length)
+    if (latitudeList.length !== longitudeList.length) {
         return undefined;
-    const total_locations = latitudeList.length;
+    }
+
+    const locationsCount = latitudeList.length;
+
+    if (locationsCount === 1) {
+        return {
+            latitude: latitudeList[0],
+            longitude: longitudeList[0],
+            latitudeDelta: 0.05,
+            longitudeDelta: 0.05,
+        }
+    }
+
     let minLongi = null, minLati = null, maxLongi = null, maxLati = null;
 
-    for (var i = 0; i < total_locations; i++) {
+    for (var i = 0; i < locationsCount; i++) {
         if (minLati == null || minLati > latitudeList[i]) {
             minLati = latitudeList[i];
         }
@@ -24,7 +36,7 @@ export const getAppropriateRegion = (latitudeList, longitudeList) => {
     const longitudeDiff = maxLongi-minLongi;
     const delta = latitudeDiff>longitudeDiff ? latitudeDiff*1.65 : longitudeDiff*1.2;
 
-    if (total_locations>0 && delta>0) {
+    if (locationsCount>0 && delta>0) {
 
         return {
             latitude:((maxLati+minLati)/2),
