@@ -28,7 +28,12 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "playStoreUrl": "https://play.google.com/store/apps/details?id=in.maxlever.volunteer"
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=in.maxlever.volunteer",
+      "config": {
+        "googleMaps": {
+          "apiKey": ""
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
