@@ -31,7 +31,6 @@
       "playStoreUrl": "https://play.google.com/store/apps/details?id=in.maxlever.volunteer",
       "config": {
         "googleMaps": {
-          "apiKey": ""
         }
       }
     },
