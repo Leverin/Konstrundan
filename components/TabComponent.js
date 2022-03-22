@@ -53,4 +53,4 @@ const BottomTabNavigator = () => {
     );
 };
 
-export default React.memo(BottomTabNavigator);
+export default BottomTabNavigator;

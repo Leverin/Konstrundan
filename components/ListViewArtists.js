@@ -23,7 +23,7 @@ const ListViewArtists = ({ navigation }) => {
 
         return (
             <React.Fragment key={item.NUMMER}>
-                <Pressable onPress={() => {navigation.navigate('ArtistMap', {artistsList: [item]})}}>
+                <Pressable onPress={() => {navigation.navigate('ArtistMap', {title: textCenter, artistsList: [item]})}}>
                     <View style={styles.dividerLight}/>
                     <Item imageSource={imageSource} textTop={textTop} textCenter={textCenter} textBottom={textBottom}/>
                     <View style={styles.dividerDark}/>
@@ -84,4 +84,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default React.memo(ListViewArtists);
+export default ListViewArtists;

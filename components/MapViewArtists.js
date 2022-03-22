@@ -2,7 +2,7 @@ import * as React from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { StyleSheet, View, Dimensions } from 'react-native';
 import ArtistMapMarkerCallout from './subcomponents/ArtistMapMarkerCallout';
-import { ARTIST_MAP_MARKERS, ARTIST_MAP_MARKERS_IMAGE_HEIGHT } from '../constants/constants';
+import { ARTIST_MAP_MARKERS } from '../constants/constants';
 import { getAppropriateRegion } from '../utils/utils-map';
 import { getPropertyValuesFromData } from '../utils/utils-general';
 import { getArtistWithNUMMERFromArray } from '../utils/utils-artists';
@@ -68,4 +68,4 @@ const styles = StyleSheet.create({
   	},
 });
 
-export default React.memo(MapViewArtists);
+export default MapViewArtists;

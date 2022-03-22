@@ -253,4 +253,4 @@ export const ARTIST_MAP_MARKERS = Object.freeze({
     182: require('../assets/mapmarkers/pin182.png'),
 });
 
-export const ARTIST_MAP_MARKERS_IMAGE_HEIGHT = Image.resolveAssetSource(ARTIST_MAP_MARKERS[0]).height;
+//export const ARTIST_MAP_MARKERS_IMAGE_HEIGHT = Image.resolveAssetSource(ARTIST_MAP_MARKERS[0]).height;

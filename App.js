@@ -33,6 +33,12 @@ const BottomTabNavigator = () => {
 				tabBarInactiveBackgroundColor: KONSTRUNDAN_COLOURS.RED,
 				tabBarInactiveTintColor: KONSTRUNDAN_COLOURS.WHITE,
 				tabBarActiveTintColor: KONSTRUNDAN_COLOURS.YELLOW,
+				tabBarStyle: {
+					paddingBottom: 0,
+				},
+				tabBarLabelStyle: {
+					paddingBottom: 30,
+				},
 			}}
 		>
             <Tab.Screen
