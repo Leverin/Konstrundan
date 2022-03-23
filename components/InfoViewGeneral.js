@@ -36,15 +36,12 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: KONSTRUNDAN_COLOURS.YELLOW,
         justifyContent: 'center',
-        //alignItems: 'center',
     },
     containerTextMain: {
         paddingLeft: '16%',
         paddingRight: '16%',
     },
     containerCenter: {
-        //flex: 1,
-        //justifyContent: 'center',
         alignItems: 'center',
     },
     textRegular: {

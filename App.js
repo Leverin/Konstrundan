@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Dimensions, Image, SafeAreaView } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -28,17 +28,11 @@ const BottomTabNavigator = () => {
         <Tab.Navigator
 			screenOptions={{
 				headerShown: false,
-				//tabBarStyle: { height: 80 },
 				tabBarActiveBackgroundColor: KONSTRUNDAN_COLOURS.RED,
 				tabBarInactiveBackgroundColor: KONSTRUNDAN_COLOURS.RED,
 				tabBarInactiveTintColor: KONSTRUNDAN_COLOURS.WHITE,
 				tabBarActiveTintColor: KONSTRUNDAN_COLOURS.YELLOW,
-				tabBarStyle: {
-					paddingBottom: 0,
-				},
-				tabBarLabelStyle: {
-					paddingBottom: 30,
-				},
+				tabBarStyle: { backgroundColor: KONSTRUNDAN_COLOURS.RED },
 			}}
 		>
             <Tab.Screen
@@ -80,7 +74,7 @@ const WindowMain = () => {
 	);
 };
 
-const screenOptionStyle = {
+const stackNavigatorScreenOptionStyle = {
 	headerStyle: {
 	  backgroundColor: KONSTRUNDAN_COLOURS.RED,
 	},
@@ -90,7 +84,7 @@ const screenOptionStyle = {
 
 const InfoViewGeneralStackNavigator = () => {
 	return (
-		<Stack.Navigator screenOptions={screenOptionStyle}>
+		<Stack.Navigator screenOptions={stackNavigatorScreenOptionStyle}>
 			<Stack.Screen name={'Info'} component={InfoViewGeneral} options={{headerLeft: (props) => null}} />
 		</Stack.Navigator>
 	);
@@ -98,7 +92,7 @@ const InfoViewGeneralStackNavigator = () => {
 
 const ListViewArtistsStackNavigator = () => {
 	return (
-		<Stack.Navigator screenOptions={screenOptionStyle}>
+		<Stack.Navigator screenOptions={stackNavigatorScreenOptionStyle}>
 			<Stack.Screen name={'ListArtists'} component={ListViewArtists} options={{ title: 'Konstnärer', headerLeft: (props) => null}} />
 			<Stack.Screen name={'ArtistMap'} component={MapViewArtists} options={({ route }) => ({ title: route.params.title})}/>
 			<Stack.Screen name={'ArtistDetailsFromSingleMap'} component={InfoViewArtist} options={({ route }) => ({ title: route.params.title })}/>
@@ -109,7 +103,7 @@ const ListViewArtistsStackNavigator = () => {
 const MapViewArtistsStackNavigator = () => {
 
 	return (
-		<Stack.Navigator screenOptions={screenOptionStyle}>
+		<Stack.Navigator screenOptions={stackNavigatorScreenOptionStyle}>
 			<Stack.Screen
 				name={'MapArtists'}
 				component={MapViewArtists}

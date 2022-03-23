@@ -10,10 +10,6 @@ import { getArtistWithNUMMERFromArray } from '../utils/utils-artists';
 const getMarkersFromArtistData = (data, onPressCallout) => {
 
 	return data.map((artist) => {
-
-		//console.log('haiit: ', Image.resolveAssetSource(ARTIST_MAP_MARKERS[artist.NUMMER]).height);
-		//const IMAGE_HEIGHT = Image.resolveAssetSource(ARTIST_MAP_MARKERS[artist.NUMMER]).height;
-
 		return (
 			<Marker
 				key={artist.NUMMER}
@@ -32,11 +28,9 @@ const getMarkersFromArtistData = (data, onPressCallout) => {
 const MapViewArtists = ({ route, navigation }) => {
 
 	const artistsList = route.params.artistsList;
-	console.log('name: ', route.name);
 	const componentDestinationName = route.name === 'MapArtists' ? 'ArtistDetails' : 'ArtistDetailsFromSingleMap';
 
 	const onPressCallout = (NUMMER) => {
-		console.log('onPressCallout');
 		const artist = getArtistWithNUMMERFromArray(NUMMER, artistsList);
 		const title = `${artist.FORNAMN} ${artist.EFTERNAMN}`;
 		navigation.navigate(componentDestinationName, {artist, title});
