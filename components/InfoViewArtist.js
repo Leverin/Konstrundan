@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, PixelRatio } from 'react-native';
 import { ARTIST_IMAGES, ARTIST_IMAGES_ASPECT_RATIO } from '../constants/constants';
 
 const getInfoViewPropsFromArtist = (artist) => {
@@ -24,27 +24,27 @@ const InfoViewArtist = ({route}) => {
 
     const addressAndCityGroup = (
         <React.Fragment>
-            {address ? <Text style={styles.text}>{address}</Text> : null}
-            {city ? <Text style={styles.textWithPadding}>{city}</Text> : null}
+            {address ? <Text style={styles.text} adjustsFontSizeToFit={true}>{address}</Text> : null}
+            {city ? <Text style={styles.textWithPadding} adjustsFontSizeToFit={true}>{city}</Text> : null}
         </React.Fragment>
     );
 
     const parkingAndBussesGroup = (
         <React.Fragment>
-            {parking ? <Text style={[styles.text, styles.firstLetterCapitalized]}>{`Parkering: ${parking}`}</Text> : null}
-            {busses ? <Text style={[styles.textWithPadding, styles.firstLetterCapitalized]}>{`Bussar: ${busses}`}</Text> : null}
+            {parking ? <Text style={[styles.text, styles.firstLetterCapitalized]} adjustsFontSizeToFit={true}>{`Parkering: ${parking}`}</Text> : null}
+            {busses ? <Text style={[styles.textWithPadding, styles.firstLetterCapitalized]} adjustsFontSizeToFit={true}>{`Bussar: ${busses}`}</Text> : null}
         </React.Fragment>
     );
 
     return (
         <View style={styles.container}>
             <View style={styles.containerText}>
-                {name ? <Text style={[styles.textWithPadding, styles.textBold]}>{name}</Text> : null}
+                {name ? <Text style={[styles.textWithPadding, styles.textBold]} adjustsFontSizeToFit={true}>{name}</Text> : null}
                 {addressAndCityGroup}
-                {phoneNumber ? <Text style={styles.textWithPadding} dataDetectorType={'phoneNumber'}>{`Tel: ${phoneNumber}`}</Text> : null}
+                {phoneNumber ? <Text style={styles.textWithPadding} dataDetectorType={'phoneNumber'} adjustsFontSizeToFit={true}>{`Tel: ${phoneNumber}`}</Text> : null}
                 {parking || busses ? parkingAndBussesGroup : null}
-                {homepage ? <Text style={styles.textWithPadding} dataDetectorType={'link'}>{homepage}</Text> : null}
-                {email ? <Text style={styles.textWithPadding} dataDetectorType={'email'}>{email}</Text> : null}
+                {homepage ? <Text style={styles.textWithPadding} dataDetectorType={'link'} adjustsFontSizeToFit={true}>{homepage}</Text> : null}
+                {email ? <Text style={styles.textWithPadding} dataDetectorType={'email'} adjustsFontSizeToFit={true}>{email}</Text> : null}
             </View>
             <Image style={styles.image} source={imageSource}/>
         </View>
@@ -60,21 +60,21 @@ const styles = StyleSheet.create({
     	justifyContent: 'center',
   	},
     containerText: {
-        paddingBottom: 32,
+        paddingBottom: 14,
         alignItems: 'center',
     },
     text: {
-        fontSize: 18,
+        fontSize: 14,
     },
     textWithPadding: {
-        fontSize: 18,
+        fontSize: 14,
         paddingBottom: 12,
     },
     textBold: {
         fontWeight: 'bold',
     },
     image: {
-        height: 256,
+        height: 160,
         width: undefined,
         aspectRatio: ARTIST_IMAGES_ASPECT_RATIO,
     },

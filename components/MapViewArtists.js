@@ -1,11 +1,14 @@
 import * as React from 'react';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { StyleSheet, View, Dimensions } from 'react-native';
 import ArtistMapMarkerCallout from './subcomponents/ArtistMapMarkerCallout';
 import { ARTIST_MAP_MARKERS } from '../constants/constants';
 import { getAppropriateRegion } from '../utils/utils-map';
 import { getPropertyValuesFromData } from '../utils/utils-general';
 import { getArtistWithNUMMERFromArray } from '../utils/utils-artists';
+//import { Header } from 'react-navigation';
+import * as Location from 'expo-location';
+
 
 const getMarkersFromArtistData = (data, onPressCallout) => {
 
@@ -27,6 +30,8 @@ const getMarkersFromArtistData = (data, onPressCallout) => {
 
 const MapViewArtists = ({ route, navigation }) => {
 
+	Location.requestForegroundPermissionsAsync();
+
 	const artistsList = route.params.artistsList;
 	const componentDestinationName = route.name === 'MapArtists' ? 'ArtistDetails' : 'ArtistDetailsFromSingleMap';
 
@@ -42,7 +47,14 @@ const MapViewArtists = ({ route, navigation }) => {
 
 	return (
         <View style={styles.container}>
-        	<MapView showsUserLocation={true} style={styles.map} initialRegion={initialRegion}>
+        	<MapView
+				style={styles.map}
+				showsUserLocation={true}
+				showsMyLocationButton={true}
+				initialRegion={initialRegion}
+				provider={PROVIDER_GOOGLE}
+				toolbarEnabled={true}
+			>
 				{getMarkersFromArtistData(artistsList, onPressCallout)}
 			</MapView>
         </View>
@@ -57,8 +69,9 @@ const styles = StyleSheet.create({
     	justifyContent: 'center',
   	},
   	map: {
-    	width: Dimensions.get('window').width,
-    	height: Dimensions.get('window').height-32,
+    	//width: Dimensions.get('window').width,
+		width: '100%',
+    	height: '100%',
   	},
 });
 

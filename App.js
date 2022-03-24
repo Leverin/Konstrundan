@@ -94,7 +94,7 @@ const ListViewArtistsStackNavigator = () => {
 	return (
 		<Stack.Navigator screenOptions={stackNavigatorScreenOptionStyle}>
 			<Stack.Screen name={'ListArtists'} component={ListViewArtists} options={{ title: 'Konstnärer', headerLeft: (props) => null}} />
-			<Stack.Screen name={'ArtistMap'} component={MapViewArtists} options={({ route }) => ({ title: route.params.title})}/>
+			<Stack.Screen name={'MapArtist'} component={MapViewArtists} options={({ route }) => ({ title: route.params.title})}/>
 			<Stack.Screen name={'ArtistDetailsFromSingleMap'} component={InfoViewArtist} options={({ route }) => ({ title: route.params.title })}/>
 		</Stack.Navigator>
 	);
