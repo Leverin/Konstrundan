@@ -84,7 +84,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     image: {
-        //height: 160,
         height: IMAGE_HEIGHT,
         width: undefined,
         aspectRatio: ARTIST_IMAGES_ASPECT_RATIO,
@@ -95,4 +94,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default InfoViewArtist;
+export default React.memo(InfoViewArtist);

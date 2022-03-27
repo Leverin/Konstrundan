@@ -52,4 +52,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default ArtistMapMarkerCallout;
+export default React.memo(ArtistMapMarkerCallout);

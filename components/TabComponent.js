@@ -15,7 +15,6 @@ const BottomTabNavigator = () => {
         <Tab.Navigator
 			screenOptions={{
 				headerShown: false,
-				//tabBarStyle: { height: 80 },
 				tabBarActiveBackgroundColor: KONSTRUNDAN_COLOURS.RED,
 				tabBarInactiveBackgroundColor: KONSTRUNDAN_COLOURS.RED,
 				tabBarInactiveTintColor: KONSTRUNDAN_COLOURS.WHITE,

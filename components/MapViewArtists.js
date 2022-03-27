@@ -6,7 +6,6 @@ import { ARTIST_MAP_MARKERS, VIEW_KEYS } from '../constants/constants';
 import { getAppropriateRegion } from '../utils/utils-map';
 import { getPropertyValuesFromData } from '../utils/utils-general';
 import { getArtistWithNUMMERFromArray } from '../utils/utils-artists';
-//import { Header } from 'react-navigation';
 import * as Location from 'expo-location';
 
 
@@ -71,10 +70,9 @@ const styles = StyleSheet.create({
     	justifyContent: 'center',
   	},
   	map: {
-    	//width: Dimensions.get('window').width,
 		width: '100%',
     	height: '100%',
   	},
 });
 
-export default MapViewArtists;
+export default React.memo(MapViewArtists);

@@ -13,6 +13,7 @@ const ListViewArtists = ({ navigation }) => {
             renderItem={listItem}
             keyExtractor={item => item.NUMMER}
             style={styles.background}
+            removeClippedSubviews={true}
         />
     );
 };
