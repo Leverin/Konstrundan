@@ -3,7 +3,7 @@
     "name": "Konstrundan",
     "slug": "Konstrundan",
     "version": "2.2.8",
-    "platforms": ["android", "ios"],
+    "platforms": ["android"],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -17,9 +17,6 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true
-    },
     "android": {
       "package": "in.maxlever.volunteer",
       "versionCode": 20,
