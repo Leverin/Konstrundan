@@ -23,7 +23,7 @@
     "android": {
       "package": "in.maxlever.volunteer",
       "versionCode": 20,
-      "playStoreUrl": "https://play.google.com/store/apps/details?id=in.maxlever.volunteer",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=in.maxlever.volunteer"
     },
     "web": {
       "favicon": "./assets/favicon.png"
