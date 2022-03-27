@@ -41,7 +41,7 @@ const InfoViewArtist = ({route}) => {
     );
 
     return (
-        <ScrollView style={styles.scrollView}>
+        <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollViewContentContainerStyle}>
             <View style={styles.container}>
                 <View style={styles.containerText}>
                     {name ? <Text style={[styles.textWithPadding, styles.textBold]} numberOfLines={1} adjustsFontSizeToFit={true}>{name}</Text> : null}
@@ -60,6 +60,9 @@ const InfoViewArtist = ({route}) => {
 const styles = StyleSheet.create({
     scrollView: {
         backgroundColor: KONSTRUNDAN_COLOURS.WHITE,
+    },
+    scrollViewContentContainerStyle: {
+        flex: 1,
     },
 	container: {
     	flex: 1,

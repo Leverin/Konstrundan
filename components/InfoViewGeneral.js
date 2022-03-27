@@ -10,7 +10,7 @@ const FONTSIZE = {
 
 const InfoViewGeneral = () => {
     return (
-        <ScrollView style={styles.scrollView}>
+        <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollViewContentContainerStyle}>
             <View style={styles.container}>
                 <View style={styles.containerTextMain}>
                     <View style={styles.containerCenter}>
@@ -40,6 +40,9 @@ const InfoViewGeneral = () => {
 const styles = StyleSheet.create({
     scrollView: {
         backgroundColor: KONSTRUNDAN_COLOURS.YELLOW,
+    },
+    scrollViewContentContainerStyle: {
+        flex: 1,
     },
     container: {
         flex: 1,
