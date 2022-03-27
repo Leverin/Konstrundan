@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StatusBar } from 'expo-status-bar';
-import { ARTIST_DATA } from './constants/constants';
+import { ARTIST_DATA, VIEW_KEYS } from './constants/constants';
 import { Ionicons } from '@expo/vector-icons';
 
 //import BottomTabNavigator from './components/TabComponent';
@@ -93,9 +93,9 @@ const InfoViewGeneralStackNavigator = () => {
 const ListViewArtistsStackNavigator = () => {
 	return (
 		<Stack.Navigator screenOptions={stackNavigatorScreenOptionStyle}>
-			<Stack.Screen name={'ListArtists'} component={ListViewArtists} options={{ title: 'Konstnärer', headerLeft: (props) => null}} />
-			<Stack.Screen name={'MapArtist'} component={MapViewArtists} options={({ route }) => ({ title: route.params.title})}/>
-			<Stack.Screen name={'ArtistDetailsFromSingleMap'} component={InfoViewArtist} options={({ route }) => ({ title: route.params.title })}/>
+			<Stack.Screen name={VIEW_KEYS.LIST_ARTISTS} component={ListViewArtists} options={{ title: 'Konstnärer', headerLeft: (props) => null}} />
+			<Stack.Screen name={VIEW_KEYS.MAP_ARTIST} component={MapViewArtists} options={({ route }) => ({ title: route.params.title})}/>
+			<Stack.Screen name={VIEW_KEYS.DETAILS_ARTIST_FROM_MAP_SINGLE} component={InfoViewArtist} options={({ route }) => ({ title: route.params.title })}/>
 		</Stack.Navigator>
 	);
 };
@@ -105,12 +105,12 @@ const MapViewArtistsStackNavigator = () => {
 	return (
 		<Stack.Navigator screenOptions={stackNavigatorScreenOptionStyle}>
 			<Stack.Screen
-				name={'MapArtists'}
+				name={VIEW_KEYS.MAP_ARTISTS_MULTIPLE}
 				component={MapViewArtists}
 				options={{ title: 'Karta', headerLeft: (props) => null}}
 				initialParams={{ artistsList: ARTIST_DATA }}
 			/>
-			<Stack.Screen name={"ArtistDetails"} component={InfoViewArtist} options={({ route }) => ({ title: route.params.title, headerLeft: (props) => null})}/>
+			<Stack.Screen name={VIEW_KEYS.DETAILS_ARTIST_FROM_MAP_MULTIPLE} component={InfoViewArtist} options={({ route }) => ({ title: route.params.title, headerLeft: (props) => null})}/>
 		</Stack.Navigator>
 	);
 };

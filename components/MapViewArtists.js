@@ -2,7 +2,7 @@ import * as React from 'react';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { StyleSheet, View, Dimensions } from 'react-native';
 import ArtistMapMarkerCallout from './subcomponents/ArtistMapMarkerCallout';
-import { ARTIST_MAP_MARKERS } from '../constants/constants';
+import { ARTIST_MAP_MARKERS, VIEW_KEYS } from '../constants/constants';
 import { getAppropriateRegion } from '../utils/utils-map';
 import { getPropertyValuesFromData } from '../utils/utils-general';
 import { getArtistWithNUMMERFromArray } from '../utils/utils-artists';
@@ -33,7 +33,9 @@ const MapViewArtists = ({ route, navigation }) => {
 	Location.requestForegroundPermissionsAsync();
 
 	const artistsList = route.params.artistsList;
-	const componentDestinationName = route.name === 'MapArtists' ? 'ArtistDetails' : 'ArtistDetailsFromSingleMap';
+	const componentDestinationName = route.name === VIEW_KEYS.MAP_ARTISTS_MULTIPLE
+		? VIEW_KEYS.DETAILS_ARTIST_FROM_MAP_MULTIPLE
+		: VIEW_KEYS.DETAILS_ARTIST_FROM_MAP_SINGLE;
 
 	const onPressCallout = (NUMMER) => {
 		const artist = getArtistWithNUMMERFromArray(NUMMER, artistsList);

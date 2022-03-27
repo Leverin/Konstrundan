@@ -1,6 +1,10 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Image, PixelRatio } from 'react-native';
-import { ARTIST_IMAGES, ARTIST_IMAGES_ASPECT_RATIO } from '../constants/constants';
+import { StyleSheet, Text, View, Image, ScrollView, Dimensions } from 'react-native';
+import { ARTIST_IMAGES, ARTIST_IMAGES_ASPECT_RATIO, KONSTRUNDAN_COLOURS } from '../constants/constants';
+
+const maximumImageHeight = 256;
+const oneFifthScreenSize = Dimensions.get('window').height*0.34;
+const IMAGE_HEIGHT = oneFifthScreenSize > maximumImageHeight ? maximumImageHeight : oneFifthScreenSize;
 
 const getInfoViewPropsFromArtist = (artist) => {
 
@@ -37,27 +41,33 @@ const InfoViewArtist = ({route}) => {
     );
 
     return (
-        <View style={styles.container}>
-            <View style={styles.containerText}>
-                {name ? <Text style={[styles.textWithPadding, styles.textBold]} numberOfLines={1} adjustsFontSizeToFit={true}>{name}</Text> : null}
-                {addressAndCityGroup}
-                {phoneNumber ? <Text style={styles.textWithPadding} dataDetectorType={'phoneNumber'} numberOfLines={1} adjustsFontSizeToFit={true}>{`Tel: ${phoneNumber}`}</Text> : null}
-                {parking || busses ? parkingAndBussesGroup : null}
-                {homepage ? <Text style={styles.textWithPadding} dataDetectorType={'link'} numberOfLines={1} adjustsFontSizeToFit={true}>{homepage}</Text> : null}
-                {email ? <Text style={styles.textWithPadding} dataDetectorType={'email'} numberOfLines={1} adjustsFontSizeToFit={true}>{email}</Text> : null}
+        <ScrollView style={styles.scrollView}>
+            <View style={styles.container}>
+                <View style={styles.containerText}>
+                    {name ? <Text style={[styles.textWithPadding, styles.textBold]} numberOfLines={1} adjustsFontSizeToFit={true}>{name}</Text> : null}
+                    {addressAndCityGroup}
+                    {phoneNumber ? <Text style={styles.textWithPadding} dataDetectorType={'phoneNumber'} numberOfLines={1} adjustsFontSizeToFit={true}>{`Tel: ${phoneNumber}`}</Text> : null}
+                    {parking || busses ? parkingAndBussesGroup : null}
+                    {homepage ? <Text style={styles.textWithPadding} dataDetectorType={'link'} numberOfLines={1} adjustsFontSizeToFit={true}>{homepage}</Text> : null}
+                    {email ? <Text style={styles.textWithPadding} dataDetectorType={'email'} numberOfLines={1} adjustsFontSizeToFit={true}>{email}</Text> : null}
+                </View>
+                <Image style={styles.image} source={imageSource}/>
             </View>
-            <Image style={styles.image} source={imageSource}/>
-        </View>
+        </ScrollView>
     );
 };
 
 const styles = StyleSheet.create({
+    scrollView: {
+        backgroundColor: KONSTRUNDAN_COLOURS.WHITE,
+    },
 	container: {
     	flex: 1,
         flexDirection: 'column',
     	backgroundColor: '#fff',
     	alignItems: 'center',
     	justifyContent: 'center',
+        marginTop: 12,
   	},
     containerText: {
         paddingBottom: 14,
@@ -74,9 +84,11 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     image: {
-        height: 160,
+        //height: 160,
+        height: IMAGE_HEIGHT,
         width: undefined,
         aspectRatio: ARTIST_IMAGES_ASPECT_RATIO,
+        marginBottom: 12,
     },
     firstLetterCapitalized: {
         textTransform: 'capitalize',
