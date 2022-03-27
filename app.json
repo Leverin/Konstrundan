@@ -23,12 +23,7 @@
     "android": {
       "package": "in.maxlever.volunteer",
       "versionCode": 20,
-      "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"],
       "playStoreUrl": "https://play.google.com/store/apps/details?id=in.maxlever.volunteer",
-      "config": {
-        "googleMaps": {
-        }
-      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -3,28 +3,33 @@ import { StyleSheet, Text, View, Dimensions } from 'react-native';
 
 import { KONSTRUNDAN_COLOURS } from '../constants/constants';
 
+const FONTSIZE = {
+    STANDARD: 14,
+    HEADER: 16,
+};
+
 const InfoViewGeneral = () => {
     return (
         <View style={styles.container}>
             <View style={styles.containerTextMain}>
                 <View style={styles.containerCenter}>
-                    <Text style={styles.textHeader} adjustsFontSizeToFit={true}>{'Välkomna till Konstrundan!'}</Text>
-                    <Text style={[styles.textHeader, styles.block]} adjustsFontSizeToFit={true}>{'15 april - 24 april 2022'}</Text>
+                    <Text style={styles.textHeader} numberOfLines={1} adjustsFontSizeToFit={true}>{'Välkomna till Konstrundan!'}</Text>
+                    <Text style={[styles.textHeader, styles.block]} numberOfLines={1} adjustsFontSizeToFit={true}>{'15 april - 24 april 2022'}</Text>
                 </View>
-                <Text style={styles.textBold} adjustsFontSizeToFit={true}>{'Öppettider:'}</Text>
-                <Text style={styles.textRegular} adjustsFontSizeToFit={true}>{'Påskhelgen 10-18'}</Text>
-                <Text style={styles.textRegular} adjustsFontSizeToFit={true}>{'Vardagar 16-19'}</Text>
-                <Text style={styles.textRegular} adjustsFontSizeToFit={true}>{'Lörd-sönd 10-18'}</Text>
+                <Text style={styles.textBold} numberOfLines={1} adjustsFontSizeToFit={true}>{'Öppettider:'}</Text>
+                <Text style={styles.textRegular} numberOfLines={1} adjustsFontSizeToFit={true}>{'Påskhelgen 10-18'}</Text>
+                <Text style={styles.textRegular} numberOfLines={1} adjustsFontSizeToFit={true}>{'Vardagar 16-19'}</Text>
+                <Text style={styles.textRegular} numberOfLines={1} adjustsFontSizeToFit={true}>{'Lörd-sönd 10-18'}</Text>
                 <Text style={[styles.block, styles.textRegular]} adjustsFontSizeToFit={true}>{'Obs! Vardagar i Konsthallen 12-17'}</Text>
                 <Text style={[styles.textRegular, styles.block]} adjustsFontSizeToFit={true}>{'I år har en del konstnärer endast öppet enl. överenskommelse på vardagar. Se telefonsymbol i folder och på hemsidan.'}</Text>
                 <View style={styles.block}>
-                    <Text style={styles.textRegular} adjustsFontSizeToFit={true}>{'Mvh,'}</Text>
+                    <Text style={styles.textRegular} numberOfLines={1} adjustsFontSizeToFit={true}>{'Mvh,'}</Text>
                     <Text style={styles.textRegular} adjustsFontSizeToFit={true}>{'Styrelsen och konstnärerna i Nordvästra Skånes Konstnärsförening'}</Text>
                 </View>
                 <Text style={[styles.block, styles.textRegular]} adjustsFontSizeToFit={true}>{'För aktuell coronainfo och avvikande öppettider, besök vår hemsida.'}</Text>
             </View>
             <View style={styles.containerCenter}>
-                <Text style={styles.textBold} dataDetectorType={'link'} adjustsFontSizeToFit={true}>{'https://www.konstrundan.se/'}</Text>
+                <Text style={styles.textBold} dataDetectorType={'link'} numberOfLines={1} adjustsFontSizeToFit={true}>{'https://www.konstrundan.se/'}</Text>
             </View>
         </View>
     );
@@ -45,14 +50,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     textRegular: {
-        fontSize: 12,
+        fontSize: FONTSIZE.STANDARD,
     },
     textHeader: {
-        fontSize: 14,
+        fontSize: FONTSIZE.HEADER,
         fontWeight: 'bold',
     },
     textBold: {
-        fontSize: 12,
+        fontSize: FONTSIZE.STANDARD,
         fontWeight: 'bold',
         color: '#000',
     },

@@ -24,27 +24,27 @@ const InfoViewArtist = ({route}) => {
 
     const addressAndCityGroup = (
         <React.Fragment>
-            {address ? <Text style={styles.text} adjustsFontSizeToFit={true}>{address}</Text> : null}
-            {city ? <Text style={styles.textWithPadding} adjustsFontSizeToFit={true}>{city}</Text> : null}
+            {address ? <Text style={styles.text} numberOfLines={1} adjustsFontSizeToFit={true}>{address}</Text> : null}
+            {city ? <Text style={styles.textWithPadding} numberOfLines={1} adjustsFontSizeToFit={true}>{city}</Text> : null}
         </React.Fragment>
     );
 
     const parkingAndBussesGroup = (
         <React.Fragment>
-            {parking ? <Text style={[styles.text, styles.firstLetterCapitalized]} adjustsFontSizeToFit={true}>{`Parkering: ${parking}`}</Text> : null}
-            {busses ? <Text style={[styles.textWithPadding, styles.firstLetterCapitalized]} adjustsFontSizeToFit={true}>{`Bussar: ${busses}`}</Text> : null}
+            {parking ? <Text style={[styles.text, styles.firstLetterCapitalized]} numberOfLines={1} adjustsFontSizeToFit={true}>{`Parkering: ${parking}`}</Text> : null}
+            {busses ? <Text style={[styles.textWithPadding, styles.firstLetterCapitalized]} numberOfLines={1} adjustsFontSizeToFit={true}>{`Bussar: ${busses}`}</Text> : null}
         </React.Fragment>
     );
 
     return (
         <View style={styles.container}>
             <View style={styles.containerText}>
-                {name ? <Text style={[styles.textWithPadding, styles.textBold]} adjustsFontSizeToFit={true}>{name}</Text> : null}
+                {name ? <Text style={[styles.textWithPadding, styles.textBold]} numberOfLines={1} adjustsFontSizeToFit={true}>{name}</Text> : null}
                 {addressAndCityGroup}
-                {phoneNumber ? <Text style={styles.textWithPadding} dataDetectorType={'phoneNumber'} adjustsFontSizeToFit={true}>{`Tel: ${phoneNumber}`}</Text> : null}
+                {phoneNumber ? <Text style={styles.textWithPadding} dataDetectorType={'phoneNumber'} numberOfLines={1} adjustsFontSizeToFit={true}>{`Tel: ${phoneNumber}`}</Text> : null}
                 {parking || busses ? parkingAndBussesGroup : null}
-                {homepage ? <Text style={styles.textWithPadding} dataDetectorType={'link'} adjustsFontSizeToFit={true}>{homepage}</Text> : null}
-                {email ? <Text style={styles.textWithPadding} dataDetectorType={'email'} adjustsFontSizeToFit={true}>{email}</Text> : null}
+                {homepage ? <Text style={styles.textWithPadding} dataDetectorType={'link'} numberOfLines={1} adjustsFontSizeToFit={true}>{homepage}</Text> : null}
+                {email ? <Text style={styles.textWithPadding} dataDetectorType={'email'} numberOfLines={1} adjustsFontSizeToFit={true}>{email}</Text> : null}
             </View>
             <Image style={styles.image} source={imageSource}/>
         </View>
