@@ -1,4 +1,3 @@
-import { Image } from 'react-native';
 
 export const KONSTRUNDAN_COLOURS = Object.freeze({
     YELLOW: '#FFEA50',
@@ -260,5 +259,3 @@ export const ARTIST_MAP_MARKERS = Object.freeze({
     179: require('../assets/mapmarkers/pin179.png'),
     182: require('../assets/mapmarkers/pin182.png'),
 });
-
-//export const ARTIST_MAP_MARKERS_IMAGE_HEIGHT = Image.resolveAssetSource(ARTIST_MAP_MARKERS[0]).height;
