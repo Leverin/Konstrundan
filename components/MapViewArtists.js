@@ -27,6 +27,18 @@ const getMarkersFromArtistData = (data, onPressCallout) => {
 	});
 };
 
+const getMarkerForSamlingsUtstallningen = (data) => {
+	return (
+		<Marker
+			key={'samlingsutstallningen'}
+			coordinate={{ latitude: 55.87120350970891, longitude: 12.82450685817438 }}
+			tracksViewChanges={false}
+			title={'Samlingsutställningen'}
+			description={'Landskrona Konsthall'}
+		/>
+	);
+};
+
 const MapViewArtists = ({ route, navigation }) => {
 
 	Location.requestForegroundPermissionsAsync();
@@ -46,6 +58,8 @@ const MapViewArtists = ({ route, navigation }) => {
 	const longitudes = getPropertyValuesFromData(artistsList, 'LONGITUDE');
 	const initialRegion = getAppropriateRegion(latitudes, longitudes);
 
+	const shouldDisplaySamlingsutstallningen = artistsList.length > 1;
+
 	return (
         <View style={styles.container}>
         	<MapView
@@ -57,6 +71,7 @@ const MapViewArtists = ({ route, navigation }) => {
 				toolbarEnabled={true}
 			>
 				{getMarkersFromArtistData(artistsList, onPressCallout)}
+				{shouldDisplaySamlingsutstallningen ? getMarkerForSamlingsUtstallningen(): null}
 			</MapView>
         </View>
     );
